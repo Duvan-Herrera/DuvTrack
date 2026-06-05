@@ -193,3 +193,50 @@ main {
 .card-body ul li strong{
   color:#e8e0f5;
 }
+
+/* Footer */
+footer{
+  background-color: #110d1a;
+  border-top: 1px solid #7803ED;
+  padding: 40px 24px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+footer h5{
+  font-size: 16px;
+  color:#7803ED;
+  margin-bottom: 12px;
+}
+
+footer address{
+  color: #7a6f90;
+  font-style: normal;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+footer h6{
+  font-size: 14px;
+  color:#e8e0f5;
+  margin-bottom: 10px;
+}
+
+footer ul{
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+footer ul li a {
+  color: #7803ED;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  color: #e8e0f5;
+}
+
+footer small {
+  color: #7a6f90;
+  font-size: 12px;
+}
