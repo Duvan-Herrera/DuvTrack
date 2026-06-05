@@ -10,48 +10,78 @@
         content="DuvTrack entrega de paquetes, logística,envíos rápidos, rastreo de paquetes, mensajería,courier, seguimiento en tiempo real, transporte de paquetes.">
     <meta name="author" content="DuvTrack">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>DuvTrack | Entregas Rápidas y Rastreo en Tiempo Real</title>
 </head>
 
 <body>
-    <!-- Encabezado fijo del sitio -->
+    <!-- Checkbox oculto -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+    <!-- Overlay: al hacer clic cierra el sidebar -->
+    <label for="menu-toggle" class="sidebar-overlay"></label>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <p class="logo"><strong>DuvTrack</strong></p>
+            <label for="menu-toggle" class="sidebar-close">✕</label>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="envios.html">Envíos</a></li>
+                <li><a href="registro.html">Registrar envíos</a></li>
+                <li><a href="#sobre-plataforma">Sobre la plataforma</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Header con logo y boton -->
     <header class="site-header">
         <div class="container header-content">
             <p class="logo"><strong>DuvTrack</strong></p>
-
-            <!-- Checkbox oculto para controlar el menú hamburguesa -->
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-
-            <!-- Botón visual del menú hamburguesa -->
+            <!-- Botón hamburguesa -->
             <label for="menu-toggle" class="menu-button">
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
-
-            <!-- Navegacion principal -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="envios.html">Envios</a></li>
-                    <li><a href="registro.html">Registrar envios</a></li>
-                    <li><a href="#sobre-plataforma">Sobre la plataforma</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
     <!-- Contenido principal de la pagina -->
     <main>
-        <main>
+        <!-- Video -->
+        <section class="card">
+            <video src="assets/video/presentacionDuvTrack.mp4" controls></video>
+        </section>
+    
 
-            <!-- Video -->
-            <section class="video-bloque">
-                <video src="assets/video/presentacionDuvTrack.mp4" controls></video>
+            <!-- Informacion sobre la plataforma -->
+            <section class= "card" id="sobre-plataforma">
+                <div class="card-body">
+                    <h2>Sobre DuvTrack</h2>
+                    <p>
+                        Centraliza el seguimiento de todos tus envíos de paquetería en un solo panel.
+                        Calcula costos por kilómetro, organiza por estado y categoría, y archiva los paquetes
+                        entregados.
+                        Todo se guarda automáticamente en tu navegador, sin necesidad de registro.
+                    </p>
+
+                    <h3>Beneficios principales</h3>
+                    <ul>
+                        <li><strong>Centralización:</strong> Todos tus envíos en un solo lugar.</li>
+                        <li><strong>Cálculo de costo:</strong> km × ₡600 × multiplicador según categoría.</li>
+                        <li><strong>Organización:</strong> Filtra por estado, categoría y archiva entregados.</li>
+                        <li><strong>Persistencia:</strong> Datos guardados localmente, sin servidor.</li>
+                    </ul>
+                </div>
             </section>
 
+
+</main>
 </body>
 
 </html>
