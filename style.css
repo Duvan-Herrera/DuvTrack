@@ -81,7 +81,7 @@ body {
 
 .sidebar:hover .sidebar-nav ul li a {
     justify-content: flex-start;
-    padding: 14px 2Opx;
+    padding: 14px 20px;
 }
 
 .sidebar-nav ul li a span:last-child {
