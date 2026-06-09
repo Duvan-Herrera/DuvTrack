@@ -65,8 +65,9 @@ body {
 .sidebar-nav ul li a {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
-  padding: 12px 22px;
+  padding: 14px 0;
   color:#7a6f90;
   text-decoration: none;
   white-space: nowrap;
@@ -84,13 +85,17 @@ body {
 }
 
 .sidebar-nav ul li a .material-symbols-outlined {
-  font-size: 22px;
+  font-size: 28px;
   flex-shrink: 0;
 }
 
-.sidebar-nav ul li a span + *,
-.sidebar-nav ul li a {
-  overflow: hidden;
+.sidebar-nav ul li a span:last-child {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-nav ul li a span:last-child {
+    opacity: 1;
 }
 
 /*    Header   */
