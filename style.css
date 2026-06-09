@@ -67,7 +67,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 14px 0;
+  padding: 14px;
   color:#7a6f90;
   text-decoration: none;
   white-space: nowrap;
@@ -79,18 +79,9 @@ body {
   color: #e8e0f5;
 }
 
-/* Iconos SVG */
-.sidebar-nav ul li a i {
-  font-size: 18px;
-}
 .sidebar:hover .sidebar-nav ul li a {
-    justify-content: center;
-    padding: 14px;
-}
-
-.sidebar-nav ul li a .material-symbols-outlined {
-  font-size: 28px;
-  flex-shrink: 0;
+    justify-content: flex-start;
+    padding: 14px 2Opx;
 }
 
 .sidebar-nav ul li a span:last-child {
