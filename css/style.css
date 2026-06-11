@@ -40,25 +40,25 @@ body {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(17, 13, 26, 0.9);
-  border: 1px solid rgba(120, 3, 237, 0.4);
+  background-color: rgba(120, 3, 237, 0.15);
+  border: 1px solid rgba(120, 3, 237, 0.7);
   border-radius: 24px;
-  padding: 12px 8px;
+  padding: 16px 10px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   z-index: 200;
 }
 
 /* Icono del dock */
 .dock-item {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #7a6f90;
+  color: #a890c8;
   text-decoration: none;
   position: relative;
   transition: background 0.2s, color 0.2s;
@@ -70,13 +70,14 @@ body {
 }
 
 .dock-item.active {
-  background-color: rgba(120, 3, 237, 0.3);
-  color: #7803ED;
+  background-color: #7803ED;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(120, 3, 237, 0.6)
 }
 
 /* Iconos */
 .dock-item .material-symbols-outlined {
-  font-size: 24px;
+  font-size: 32px;
 }
 
 /* Tooltip */
@@ -116,8 +117,9 @@ main {
   margin-bottom: 24px;
 }
 
-.card-body{                                                
+.card-body {                                                
   padding: 24px;
+  padding-top: 30px;
 }
 
 /* Card video */
@@ -129,10 +131,11 @@ main {
   display: block;
 }
 
-.card-body h2{
+.card-body h2 {
   font-size: 22px;
   margin-bottom: 12px;
   color: #e8e0f5;
+  padding-top: 4px;
 }
 
 .card-body h3 {
@@ -207,4 +210,138 @@ footer ul li a:hover {
 footer small {
   color: #7a6f90;
   font-size: 12px;
+}
+
+.card-hero .card-body {
+    padding: 20px 24px 24px 24px;
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.card-hero .card-body h1 {
+  font-size: 28px;
+  color: #e8e0f5;
+  margin-bottom: 12px;
+}
+
+.card-hero .card-body p {
+  color:#7a6f90;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.hero-botones {
+  display:  flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.btn-principal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #7803ED;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-principal:hover {
+  background-color: #6002c0;
+}
+
+.btn-secundario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent; 
+  color: #e8e0f5;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #7803ED;
+  text-decoration: none;
+  font-size: 14px; 
+}
+
+.btn-secundario:hover {
+  background-color: rgba(120, 3,237, 0.15);
+}
+
+/* Estadisticas  */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background-color: #16111f;
+  border: 1px solid #7803ED;
+  border-radius: 14px;
+  padding:  24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-card.verde { border-color: #2d7a45; }
+.stat-card.azul { border-color: #1a6fa8; }
+.stat-card.rojo { border-color: #a32d2d; }
+
+.stat-numero {
+  font-size: 40px;
+  font-weight: 600;
+  color: #e8e0f5;
+}
+
+.stat-card.verde .stat-numero { color:#4CAF50; }
+.stat-card.azul .stat-numero { color: #2196F3; }
+.stat-card.rojo .stat-numero { color: #f44336; }
+
+.stats-label {
+  font-size: 13px;
+  color: #7a6f90;
+}
+
+/* Features */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat( 3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.feature-card {
+  background-color: #0e0b14;
+  border: 1px solid rgba(120, 3, 237, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-card .material-symbols-outlined {
+  font-size: 30px;
+  color: #7803ED;
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8e0f5;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: #7a6f90;
+  line-height: 1.6;
 }
