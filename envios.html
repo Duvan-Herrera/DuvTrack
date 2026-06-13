@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-    content="DuvTrack es una plataforma moderna de logística y entrega de paqeutes que ofrece envíos rápidos, rastreo en tiempo real y cobertura confiable para empresas y clientes.">
-<meta name="keywords"
-    content="DuvTrack entrega de paquetes, logística,envíos rápidos, rastreo de paquetes, mensajería,courier, seguimiento en tiempo real, transporte de paquetes.">
-<meta name="author" content="DuvTrack">
-<!-- CSS -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-<title>DuvTrack | Entregas Rápidas y Rastreo en Tiempo Real</title>
+
+<head>
+    <html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="DuvTrack es una plataforma moderna de logística y entrega de paqeutes que ofrece envíos rápidos, rastreo en tiempo real y cobertura confiable para empresas y clientes.">
+    <meta name="keywords"
+        content="DuvTrack entrega de paquetes, logística,envíos rápidos, rastreo de paquetes, mensajería,courier, seguimiento en tiempo real, transporte de paquetes.">
+    <meta name="author" content="DuvTrack">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>DuvTrack | Entregas Rápidas y Rastreo en Tiempo Real</title>
 </head>
 
 
 <body>
     <nav class="dock">
-        <a href="index.html" class="dock-item active">
+        <a href="index.html" class="dock-item">
             <span class="material-symbols-outlined">home</span>
             <span class="tooltip">Inicio</span>
         </a>
-        <a href="envios.html" class="dock-item">
+        <a href="envios.html" class="dock-item active">
             <span class="material-symbols-outlined">package_2</span>
             <span class="tooltip">Envíos</span>
         </a>
@@ -38,7 +40,6 @@
             <span class="tooltip">Contacto</span>
         </a>
     </nav>
-    </aside>
 
     <!-- Header con logo y boton -->
     <header class="topbar">
@@ -46,6 +47,50 @@
         <p><strong>DuvTrack</strong></p>
     </header>
 
+    <main>
+        <section class="tabs">
+            <button id="btnActivos" class="tab active">
+                <span class="material-symbols-outlined">local_shipping</span>
+                Activos(<span id="contadorActivos">0</span>)
+            </button>
+            <button id="btnArchivados" class="tab">
+                <span class="material-symbols-outlined">archive</span>
+                Archivados(<span id="contadorArchivados">0</span>)
+            </button>
+        </section>
+
+        <!-- Filtros -->
+        <section class="filtros">
+            <input type="text" id="busqueda" placeholder="Buscar por #guia o destinatario.">
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="en transito">En tránsito</option>
+                <option value="retrasado">Retrasado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="entregado">Entregado</option>
+            </select>
+            <select id="filtroCategoria">
+                <option value="">Todas las categorías</option>
+                <option value="Express">Express</option>
+                <option value="Estándar">Estándar</option>
+                <option value="Económico">Económico</option>
+                <option value="Internacional">Internacional</option>
+            </select>
+        </section>
+
+        <!-- Contador de resultados -->
+        <p class="contador" id="contadorResultados">Mostrando envíos</p>
+
+        <!-- Grid de envios -->
+        <section class="envios-grid" id="enviosGrid">
+            <article class="card-nuevo">
+                <span class="material-symbols-outlined">add_circle</span>
+                <strong>Registrá un nuevo envío</strong>
+                <a href="registro.html">Ir a registro
+                    <span class="material-symbols-outlined">arrow_outward</span></a>
+            </article>
+        </section>
+    </main>
 
     <!-- Pie de pagina -->
     <footer id="contacto">

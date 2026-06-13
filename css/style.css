@@ -1,9 +1,8 @@
-
 /* Elimina margenes y espacios automaticos del navegador */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .topbar {
@@ -21,7 +20,7 @@
   z-index: 50;
 }
 
-.topbar p{
+.topbar p {
   color: #7803ED;
   font-size: 16px;
 }
@@ -103,13 +102,13 @@ body {
 
 /*  Main  */
 main {
-    margin-left: 90px;
-    padding-top: 90px;
-    padding: 70px 24px 24px 24px;
+  margin-left: 90px;
+  padding-top: 90px;
+  padding: 70px 24px 24px 24px;
 }
 
 /* Cards */
-.card{
+.card {
   background-color: #16111f;
   border: 1px solid #7803ED;
   border-radius: 14px;
@@ -117,13 +116,13 @@ main {
   margin-bottom: 24px;
 }
 
-.card-body {                                                
+.card-body {
   padding: 24px;
   padding-top: 30px;
 }
 
 /* Card video */
-.card video{
+.card video {
   width: 100%;
   height: 700px;
   object-fit: cover;
@@ -145,28 +144,28 @@ main {
   margin-bottom: 10px;
 }
 
-.card-body p{
+.card-body p {
   color: #7a6f90;
   line-height: 1.7;
 }
 
-.card-body ul{
+.card-body ul {
   list-style: none;
   margin-top: 8px;
 }
 
-.card-body ul li{
+.card-body ul li {
   color: #7a6f90;
   padding: 6px 0;
   border-bottom: 1px solid #1e1530;
 }
 
-.card-body ul li strong{
-  color:#e8e0f5;
+.card-body ul li strong {
+  color: #e8e0f5;
 }
 
 /* Footer */
-footer{
+footer {
   margin-left: 90px;
   background-color: #110d1a;
   border-top: 1px solid #7803ED;
@@ -174,26 +173,26 @@ footer{
   text-align: center;
 }
 
-footer h5{
+footer h5 {
   font-size: 16px;
-  color:#7803ED;
+  color: #7803ED;
   margin-bottom: 12px;
 }
 
-footer address{
+footer address {
   color: #7a6f90;
   font-style: normal;
   line-height: 1.8;
   margin-bottom: 20px;
 }
 
-footer h6{
+footer h6 {
   font-size: 14px;
-  color:#e8e0f5;
+  color: #e8e0f5;
   margin-bottom: 10px;
 }
 
-footer ul{
+footer ul {
   list-style: none;
   margin-bottom: 20px;
 }
@@ -213,11 +212,11 @@ footer small {
 }
 
 .card-hero .card-body {
-    padding: 20px 24px 24px 24px;
-     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+  padding: 20px 24px 24px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .card-hero .card-body h1 {
@@ -227,13 +226,13 @@ footer small {
 }
 
 .card-hero .card-body p {
-  color:#7a6f90;
+  color: #7a6f90;
   margin-bottom: 0;
   line-height: 1.7;
 }
 
 .hero-botones {
-  display:  flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   flex-shrink: 0;
@@ -259,17 +258,17 @@ footer small {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: transparent; 
+  background-color: transparent;
   color: #e8e0f5;
   padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid #7803ED;
   text-decoration: none;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 .btn-secundario:hover {
-  background-color: rgba(120, 3,237, 0.15);
+  background-color: rgba(120, 3, 237, 0.15);
 }
 
 /* Estadisticas  */
@@ -284,7 +283,7 @@ footer small {
   background-color: #16111f;
   border: 1px solid #7803ED;
   border-radius: 14px;
-  padding:  24px 20px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -292,7 +291,7 @@ footer small {
 
 .stat-card.verde { border-color: #2d7a45; }
 .stat-card.azul { border-color: #1a6fa8; }
-.stat-card.rojo { border-color: #a32d2d; }
+.stat-card.rojo {border-color: #a32d2d; }
 
 .stat-numero {
   font-size: 40px;
@@ -300,7 +299,7 @@ footer small {
   color: #e8e0f5;
 }
 
-.stat-card.verde .stat-numero { color:#4CAF50; }
+.stat-card.verde .stat-numero { color: #4CAF50; }
 .stat-card.azul .stat-numero { color: #2196F3; }
 .stat-card.rojo .stat-numero { color: #f44336; }
 
@@ -313,7 +312,7 @@ footer small {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat( 3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 20px;
 }
@@ -344,4 +343,225 @@ footer small {
   font-size: 13px;
   color: #7a6f90;
   line-height: 1.6;
+}
+
+
+/* ============== 
+  PAGINA ENVIOS
+  ===============*/
+
+/*  Pestañas */
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: #16111f;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  border-radius: 10px;
+  color: #7a6f90;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-active {
+  background-color: rgba(120, 3, 237, 0.15);
+  border-color: #7803ED;
+  color: #e8e0f5;
+}
+
+/* Filtros */
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.filtros input,
+.filtros select {
+  background-color: #16111f;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  color: #e8e0f5;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.filtros input {
+  flex: 1;
+}
+
+.contador {
+  color: #7a6f90;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+/* Grid de envio */
+.envios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Tarjeta de envio */
+.envio-grid {
+  background-color: #16111f;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  border-left: 4px solid #2196F3;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.envio-card.retrasado { border-left-color: #f44336;}
+.envio-card.pendiente { border-left-color: #ffc107;}
+.envio-card.entregado { border-left-color: #4CAF50;}
+
+.envio-card .top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.envio-card .numero-guia {
+  font-weight: 600;
+  color: #e8e0f5;
+}
+
+.envio-card .destinatario {
+  color: #a890c8;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.envio-card .badges {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.badge.en-transito  { background-color: rgba(33,150,243,0.2); color: #2196F3; }
+.badge.retrasado    { background-color: rgba(244,67,54,0.2); color: #f44336; }
+.badge.pendiente    { background-color: rgba(255,193,7,0.2); color: #ffc107; }
+.badge.entregado    { background-color: rgba(76,175,80,0.2); color: #4CAF50; }
+
+.badge.Express       { background-color: rgba(120,3,237,0.2); color: #b388eb; }
+.badge.Estándar      { background-color: rgba(122,111,144,0.2); color: #a890c8; }
+.badge.Económico     { background-color: rgba(76,175,80,0.2); color:#4CAF50; }
+.badge.Internacional { background-color: rgba(233,30,99,0.2); color:#e91e62; }
+
+.envio-card .info-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7a6f90;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.envio-card .info-row .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.envio-card .nota {
+  background-color: rgba(255, 193, 7, 0.08);
+  border: 1px solid rgba(255, 193, 7, 0.25);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+  color: #e8e0f5;
+  margin: 10px 0;
+}
+
+.envio-card .botones{
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-recibido {
+  flex: 1;
+  background-color: transparent;
+  border: 1px solid #2d7a45;
+  color: #4CAF50;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-recibido:hover {
+  background-color: rgba(76,175,80,0.1);
+}
+
+.btn-archivar {
+  flex: 1;
+  background-color: #1e1530;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  color: #e8e0f5;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-archivar:hover {
+  background-color: rgba(120, 3, 237, 0.2);
+}
+
+/* Card Fija para registrar nuevo envio */
+.card-nuevo {
+  border: 1px dashed rgba(120, 3, 237, 0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px;
+  text-align: center;
+  color: #a890c8;
+}
+
+.card-nuevo .material-symbols-outlined {
+  font-size: 36px;
+  color: #7803ED;
+}
+
+.card-nuevo strong {
+  color: #e8e0f5;
+}
+
+.card-nuevo a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #7803ED;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.card-nuevo a .material-symbols-outlined {
+  font-size: 16px;
+  color: #7803ED;
 }
