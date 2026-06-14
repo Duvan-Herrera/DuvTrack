@@ -37,8 +37,35 @@ function cargarEstadisticas() {
     document.getElementById('en-transito').textContent = transito;
     document.getElementById('retrasados').textContent = retrasados;
 }
-
-// Solo ejecuta si existen esos elementos (es decir, si estamos en index.html)
 if (document.getElementById('total-envios')) {
     cargarEstadisticas();
+}
+
+// ===========================
+//   REGISTRO - cálculo de precio
+// ===========================
+
+const inputKilometros = document.getElementById('kilometros');
+const selectCategoria = document.getElementById('categoria');
+const precioMonto = document.getElementById('precioMonto');
+const precioFormula = document.getElementById('precioFormula');
+const precioTotal = document.getElementById('precioTotal');
+
+function calcularPrecio() {
+    const km = Number(inputKilometros.value);
+    const multiplicador = Number(selectCategoria.value);
+
+    const total = km * 600 * multiplicador;
+
+    precioMonto.textContent = '₡' + total;
+    precioFormula.textContent = km + 'kmn x ₡600 x ' + multiplicador;
+    precioTotal.textContent = 'Total: ₡' + total;
+}
+
+//Solo corre si estamos en registro.html
+
+if (inputKilometros) {
+    inputKilometros.addEventListener ('input', calcularPrecio);
+    selectCategoria.addEventListener ('change', calcularPrecio);
+    calcularPrecio();
 }

@@ -611,4 +611,189 @@ footer small {
 #formRegistro label {
   display: block;
   color: #e8e0f5;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+#formRegistro input,
+#formRegistro select {
+  width: 100%;
+  background-color: #0e0b14;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  color: #e8e0f5;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+#formRegistro input:focus,
+#formRegistro select:focus {
+  outline: none;
+  border-color: #7803ED;
+}
+
+#formRegistro input.invalido {
+  border-color: #f44336;
+}
+
+.error {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.error.visible {
+  display: block;
+}
+
+/* Fila de kilometros y categoria */
+.campos-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Precio estimado */
+.precio-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(76,175,80,0.1);
+  border: 1px solid rgba(76,175,80,0.3);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.precio-monto {
+  font-size: 26px;
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.precio-formula {
+  font-size: 12px;
+  color: #7a6f90;
+  margin-top: 2px;
+}
+
+.precio-info {
+  text-align: right;
+}
+
+.badge-precio {
+  background-color: rgba(76,175,80,0.2);
+  color: #4CAF50;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.precio-info p {
+  color: #e8e0f5;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* Boton ancho */
+.btn-full {
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Columna lateral derecha */
+.registro-lateral h3 {
+  font-size: 13px;
+  color: #a890c8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.vacio {
+  color: #7a6f90;
+  font-size: 13px;
+  background-color: #16111f;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Tarjeta de envios registrados */
+.envio-registrado {
+  background-color: #16111f;
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.envio-registrado .numero-guia {
+  font-weight: 600;
+  color: #e8e0f5;
+  font-size: 14px;
+}
+
+.envio-registrado .detalle {
+  color: #7a6f90;
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+
+.envio-registrado .badges {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-eliminar {
+  background-color: transparent;
+  border: 1px solid rgba(244,67,54,0.4);
+  color: #f44336;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-eliminar:hover {
+  background-color: rgba(244,67,54,0.1);
+}
+
+/* Caja informativa */
+.info-box {
+  display: flex;
+  gap: 10px;
+  background-color: rgba(120, 3, 237, 0.1);
+  border: 1px solid rgba(120, 3, 237, 0.3);
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 16px;
+}
+
+.info-box .material-symbols-outlined {
+  color: #7803ED;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.info-box p {
+  color: #a890c8;
+  font-size: 12px;
+  line-height: 1.6;
 }
