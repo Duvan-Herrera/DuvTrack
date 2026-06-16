@@ -1,28 +1,63 @@
 
+// ===========================
+//   Funciones compartidas
+// ===========================
+function obtenerEnvios() {
+    const enviosGuardados = localStorage.getItem('duvtrack_envios_personalizados');
+    return JSON.parse(enviosGuardados || '[]');
+}
 
-/* ESTADÍSTICAS DEL INDEX */
+function guardarEnvios(envios) {
+    localStorage.setItem('duvtrack_envios_personalizados', JSON.stringify(envios));
+}
+
+function actualizarEstadosPorFecha() {
+
+    const envios = obtenerEnvios();
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    let cambios = false;
+
+    for (const envio of envios) {
+        if (envio.estado !== 'entregado') {
+            const fechaEnvio = new Date(envio.fechaEstimada);
+            fechaEnvio.setHours(0, 0, 0, 0);
+
+            if (fechaEnvio < hoy && envio.estado !== 'retrasado') {
+                envio.estado = 'retrasado'
+                envio.ultimoEvento = 'Fecha estimada vencida';
+                cambios = true;
+            }
+        }
+    }
+
+    if (cambios) {
+        guardarEnvios(envios);
+    }
+}
+
+// ===========================
+//   ESTADÍSTICAS DEL INDEX
+// ===========================
+
 
 function cargarEstadisticas() {
-
-    // Se lee los envíos que el usuario ha registrado
-    // Si no hay nada guardado, usamos un arreglo vacío []
     const enviosGuardados = localStorage.getItem('duvtrack_envios_personalizados');
     const envios = JSON.parse(enviosGuardados || '[]');
 
-    // Contadores que empiezan en 0
     let total = envios.length;
     let entregados = 0;
     let transito = 0;
     let retrasados = 0;
 
-    // Se recorre los envíos guardados y contamos según su estado
     for (const envio of envios) {
 
         if (envio.estado === 'entregado') {
             entregados++;
         }
 
-        if (envio.estado === 'en tránsito') {
+        if (envio.estado === 'en tránsito' || envio.estado === 'pendiente') {
             transito++;
         }
 
@@ -38,6 +73,7 @@ function cargarEstadisticas() {
     document.getElementById('retrasados').textContent = retrasados;
 }
 if (document.getElementById('total-envios')) {
+    actualizarEstadosPorFecha();
     cargarEstadisticas();
 }
 
@@ -58,35 +94,37 @@ function calcularPrecio() {
     const total = km * 600 * multiplicador;
 
     precioMonto.textContent = '₡' + total;
-    precioFormula.textContent = km + 'km x ₡600 x ' + multiplicador;
+    precioFormula.textContent = km + 'km × ₡600 × ' + multiplicador;
     precioTotal.textContent = 'Total: ₡' + total;
 }
 
 if (inputKilometros) {
-    inputKilometros.addEventListener ('input', calcularPrecio);
-    selectCategoria.addEventListener ('change', calcularPrecio);
+    inputKilometros.addEventListener('input', calcularPrecio);
+    selectCategoria.addEventListener('change', calcularPrecio);
     calcularPrecio();
 }
 
 // ===========================
-//   Guardar envios
+//   REGISTRO - guardar envios
 // ===========================
+
 const formRegistro = document.getElementById('formRegistro');
 
 if (formRegistro) {
-    formRegistro.addEventListener('submit', function(event) {
+    formRegistro.addEventListener('submit', function (event) {
         event.preventDefault();
 
         /* se leen los valores del formulario */
         const numeroGuia = document.getElementById('numeroGuia').value.trim();
         const destinatario = document.getElementById('destinatario').value.trim();
+        const origen = document.getElementById('origen').value.trim();
         const destino = document.getElementById('destino').value.trim();
+        const nota = document.getElementById('nota').value.trim();
         const km = Number(inputKilometros.value);
         const multiplicador = Number(selectCategoria.value);
         const categoriaTexto = selectCategoria.options[selectCategoria.selectedIndex].dataset.nombre;
         const fecha = document.getElementById('fechaEstimada').value;
 
-        //validacion
         let valido = true;
 
         if (numeroGuia === '') {
@@ -105,6 +143,14 @@ if (formRegistro) {
             document.getElementById('errorDestinatario').classList.remove('visible');
         }
 
+        if (origen === '') {
+            document.getElementById('errorOrigen').textContent = 'Este campo es requerido';
+            document.getElementById('errorOrigen').classList.add('visible');
+            valido = false;
+        } else {
+            document.getElementById('errorOrigen').classList.remove('visible');
+        }
+
         if (destino === '') {
             document.getElementById('errorDestino').textContent = 'Este campo es requerido';
             document.getElementById('errorDestino').classList.add('visible');
@@ -121,12 +167,19 @@ if (formRegistro) {
             document.getElementById('errorKilometros').classList.remove('visible');
         }
 
-        /* Si algo no es valido, el sistema no continua */
-        if (!valido){
+        if (fecha === '') {
+            document.getElementById('errorFecha').textContent = 'Este campo es requerido';
+            document.getElementById('errorFecha').classList.add('visible');
+            valido = false;
+        } else {
+            document.getElementById('errorFecha').classList.remove('visible');
+        }
+
+        if (!valido) {
             return;
         }
 
-        /* Calculamos el costo final */
+        /* Se calcula el costo final */
         const costo = km * 600 * multiplicador;
 
         /* Se crea el objeto del nuevo envío */
@@ -134,7 +187,9 @@ if (formRegistro) {
             id: numeroGuia,
             numeroGuia: numeroGuia,
             destinatario: destinatario,
+            origen: origen,
             destino: destino,
+            nota: nota,
             kilometros: km,
             categoria: categoriaTexto,
             multiplicador: multiplicador,
@@ -142,105 +197,256 @@ if (formRegistro) {
             estado: 'pendiente',
             fechaEstimada: fecha,
             ultimoEvento: 'Registrado por el usuario',
-            nota: ''
         };
 
-        /* Se lee los envios guardados */
-        const enviosGuardados = localStorage.getItem('duvtrack_envios_personalizados');
-        const envios = JSON.parse(enviosGuardados || '[]');
-
-        /* Se agrega el nuevo envio */
+        const envios = obtenerEnvios();
         envios.push(nuevoEnvio);
-
-        /* Se agrega en localStorage */
-        localStorage.setItem('duvtrack_envios_personalizados', JSON.stringify(envios));
+        guardarEnvios(envios);
 
         /* Se limpia el formulario */
         formRegistro.reset();
         calcularPrecio();
-
-        /* Se vuelve a mostrar la lista actualizada */
         mostrarEnviosRegistrados();
     });
 }
 
 // ===========================
-//  Mostrar envios registrados y boton de eliminar
+//  REGISTRO - mostrar lista
 // ===========================
 
 function mostrarEnviosRegistrados() {
-
     const listaEnvios = document.getElementById('listaEnvios');
-    const mensajeVacio = document.getElementById('mensajeVacio');
 
-    /* Se lee los envios guardados */
-    const enviosGuardados = localStorage.getItem('duvtrack_envios_personalizados');
-    const envios = JSON.parse(enviosGuardados || '[]');
+    if (!listaEnvios) {
+        return;
+    }
 
-    /* Se limpia la lista actual */
+    const envios = obtenerEnvios();
     listaEnvios.innerHTML = '';
 
-    /* Si no hay envíos, muestra el mensaje que esta vacio */
-    if (envios.length === 0){
+    if (envios.length === 0) {
         listaEnvios.innerHTML = '<p class="vacio" id="mensajeVacio">Todavía no has registrado envíos.</p>';
         return;
     }
 
-    /* Se recorre cada envio y se crea la tarjeta */
     for (const envio of envios) {
         const tarjeta = document.createElement('div');
         tarjeta.classList.add('envio-registrado');
 
         tarjeta.innerHTML =
-        '<div>' +
-                '<p class="numero-guia">#' + envio.numeroGuia + '</p>' +
-                '<p class="detalle">' + envio.destinatario + ' · ' + envio.destino + ' · ' + envio.kilometros + ' km</p>' +
-                '<div class="badges">' +
-                    '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
-                    '<span class="badge entregado">₡' + envio.costo + '</span>' +
-                '</div>' +
+            '<div>' +
+            '<p class="numero-guia">#' + envio.numeroGuia + '</p>' +
+            '<p class="detalle">' + envio.destinatario + '</p>' +
+            '<p class="detalle">' + (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km</p>' +
+            '<p class="detalle"> 📅 Fecha Est. ' + envio.fechaEstimada + '</p>' +
+            '<div class="badges">' +
+            '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
+            '<span class="badge entregado">₡' + envio.costo + '</span>' +
+            '</div>' +
             '</div>' +
             '<button class="btn-eliminar" data-id="' + envio.id + '">' +
-                '<span class="material-symbols-outlined">delete</span>' +
+            '<span class="material-symbols-outlined">delete</span>' +
             '</button>';
 
-            listaEnvios.appendChild(tarjeta);
+        listaEnvios.appendChild(tarjeta);
     }
 
-    /* Se agrega el evento de eliminar a cada botón */
     const botonesEliminar = document.querySelectorAll('.btn-eliminar');
-
     for (const boton of botonesEliminar) {
-        boton.addEventListener('click', function() {
-            const idEliminar = boton.dataset.id;
-            eliminarEnvio(idEliminar);
+        boton.addEventListener('click', function () {
+            eliminarEnvio(boton.dataset.id);
         });
     }
 }
 
 function eliminarEnvio(id) {
-    
-     /* Se lee los envios guardados */
-    const enviosGuardados = localStorage.getItem('duvtrack_envios_personalizados');
-    const envios = JSON.parse(enviosGuardados || '[]');
-
-    /* Se crea un nuevo arreglo sin el envio eliminado */
+    const envios = obtenerEnvios();
     const nuevosEnvios = [];
 
     for (const envio of envios) {
-        if(envio.id !== id) {
+        if (envio.id !== id) {
             nuevosEnvios.push(envio);
         }
     }
 
-    /* Se guarda el nuevo arreglo */
-    localStorage.setItem('duvtrack_envios_personalizados', JSON.stringify(nuevosEnvios));
-
-    /* Se vuelve a mostrar la lista */
+    guardarEnvios(nuevosEnvios);
     mostrarEnviosRegistrados();
 }
 
-/* Se muestra la lista al cargar la página */
-if (document.getElementById('listaEnvios')){
+if (document.getElementById('listaEnvios')) {
     mostrarEnviosRegistrados();
+}
+
+// ===========================
+// Envios - mostrar tarjetas
+// ===========================
+let pestanaActual = 'activos';
+
+
+function mostrarEnvios() {
+    const enviosGrid = document.getElementById('enviosGrid');
+    const contadorActivos = document.getElementById('contadorActivos');
+    const contadorArchivados = document.getElementById('contadorArchivados');
+    const contadorResultados = document.getElementById('contadorResultados');
+
+    if(!enviosGrid) {
+        return;
+    }
+    const todosLosEnvios = obtenerEnvios();
+    const activos = [];
+    const archivados = [];
+
+    for (const envio of todosLosEnvios) {
+        if (envio.estado === 'entregado') {
+            archivados.push(envio);
+        } else {
+            activos.push(envio);
+        }
+    }
+
+    contadorActivos.textContent = activos.length;
+    contadorArchivados.textContent = archivados.length;
+
+    let lista = activos;
+    if (pestanaActual === 'archivados') {
+        lista = archivados;
+    }
+
+    const texto = document.getElementById('busqueda').value.toLowerCase();
+    const estadoFiltro = document.getElementById('filtroEstado').value;
+    const categoriaFiltro = document.getElementById('filtroCategoria').value;
+
+    const filtrados = [];
+
+    for (const envio of lista) {
+        const coincideTexto =
+            envio.numeroGuia.toLowerCase().includes(texto) ||
+            envio.destinatario.toLowerCase().includes(texto);
+
+        const coincideEstado = estadoFiltro === '' || envio.estado === estadoFiltro;
+        const coincideCategoria = categoriaFiltro === '' || envio.categoria === categoriaFiltro;
+
+        if (coincideTexto && coincideEstado && coincideCategoria) {
+            filtrados.push(envio);
+        }
+    }
+
+    contadorResultados.textContent = 'Mostrando ' + filtrados.length + ' envios ' + pestanaActual;
+
+    const cardNuevo = document.querySelector('.card-nuevo');
+    enviosGrid.innerHTML = '';
+
+    for (const envio of filtrados) {
+        const tarjeta = document.createElement('article');
+        tarjeta.classList.add('envio-card');
+        tarjeta.classList.add(envio.estado.replace(' ', '-'));
+
+        let notaHTML = '';
+        if (envio.nota !== '') {
+            notaHTML =
+                '<div class="nota">' +
+                '<span class="material-symbols-outlined">sticky_note_2</span> ' +
+                envio.nota +
+                '</div>';
+        }
+
+        let botonesHTML = '';
+        if (envio.estado !== 'entregado') {
+            botonesHTML =
+                '<div class="botones">' +
+                '<button class="btn-recibido" data-id="' + envio.id + '">' +
+                '<span class="material-symbols-outlined">check</span> Marcar recibido' +
+                '</button>' +
+                '<button class="btn-archivar" data-id="' + envio.id + '">' +
+                '<span class="material-symbols-outlined">archive</span> Archivar' +
+                '</button>' +
+                '</div>';
+        }
+
+        tarjeta.innerHTML =
+            '<div class="top-row">' +
+            '<span class="numero-guia">#' + envio.numeroGuia + '</span>' +
+            '</div>' +
+            '<p class="destinatario">' +
+            '<span class="material-symbols-outlined">person</span> ' + envio.destinatario +
+            '</p>' +
+            '<div class="badges">' +
+            '<span class="badge ' + envio.estado.replace(' ', '-') + '">' + envio.estado + '</span>' +
+            '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
+            '</div>' +
+            '<p class="info-row">' +
+            '<span class="material-symbols-outlined">location_on</span> ' +
+            (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km' +
+            '</p>' +
+            '<p class="info-row">' +
+            '<span class="material-symbols-outlined">payments</span> Costo: ₡' + envio.costo +
+            '</p>' +
+            notaHTML +
+            botonesHTML;
+
+        enviosGrid.appendChild(tarjeta);
+    }
+
+    enviosGrid.appendChild(cardNuevo);
+
+    //Se agrega eventos a los botones Marcar recibido 
+    const botonesRecibido = document.querySelectorAll('.btn-recibido');
+    for (const boton of botonesRecibido) {
+        boton.addEventListener('click', function () {
+            cambiarEstado(boton.dataset.id, 'entregado');
+        });
+    }
+
+    // Se agrega eventos a los botones Archivas 
+    const botonesArchivar = document.querySelectorAll('.btn-archivar');
+    for (const boton of botonesArchivar) {
+        boton.addEventListener('click', function () {
+            cambiarEstado(boton.dataset.id, 'entregado');
+        });
+    }
+}
+
+function cambiarEstado(id, nuevoEstado) {
+    const envios = obtenerEnvios();
+
+    for (const envio of envios) {
+        if (envio.id === id) {
+            envio.estado = nuevoEstado;
+            envio.ultimoEvento = 'Marcar como entregado';
+        }
+    }
+
+    guardarEnvios(envios);
+    mostrarEnvios();
+}
+
+// ===========================
+//   ENVÍOS - pestañas y filtros
+// ===========================
+const btnActivos = document.getElementById('btnActivos');
+const btnArchivados = document.getElementById('btnArchivados');
+
+if (btnActivos) {
+    actualizarEstadosPorFecha();
+
+    btnActivos.addEventListener('click', function () {
+        pestanaActual = 'activos';
+        btnActivos.classList.add('active');
+        btnArchivados.classList.remove('active');
+        mostrarEnvios();
+    });
+
+
+    btnArchivados.addEventListener('click', function () {
+        pestanaActual = 'archivados';
+        btnArchivados.classList.add('active');
+        btnActivos.classList.remove('active');
+        mostrarEnvios();
+    });
+
+    document.getElementById('busqueda').addEventListener('input', mostrarEnvios);
+    document.getElementById('filtroEstado').addEventListener('change', mostrarEnvios);
+    document.getElementById('filtroCategoria').addEventListener('change', mostrarEnvios);
+
+    mostrarEnvios();
 }

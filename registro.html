@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <html lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
@@ -70,9 +69,16 @@
                         <input type="text" id="destinatario" placeholder="Nombre completo">
                         <p class="error" id="errorDestinatario"></p>
 
+                        <label for="origen">Origen *</label>
+                        <input type="text" id="origen" placeholder="Ciudad de origen">
+                        <p class="error" id="errorOrigen"></p>
+
                         <label for="destino">Destino *</label>
                         <input type="text" id="destino" placeholder="Ciudad de destino">
                         <p class="error" id="errorDestino"></p>
+
+                        <label for="nota">Nota personal (opcional)</label>
+                        <input type="text" id="nota" placeholder="Ej: Llamar antes de entregar">
 
                         <div class="campos-fila">
                             <div>
@@ -102,8 +108,9 @@
                             </div>
                         </div>
 
-                        <label for="fechaEstimada">Fecha estimada</label>
+                        <label for="fechaEstimada">Fecha estimada *</label>
                         <input type="date" id="fechaEstimada">
+                        <p class="error" id="errorFecha"></p>
 
                         <button type="submit" class="btn-principal btn-full">
                             <span class="material-symbols-outlined">add</span>
