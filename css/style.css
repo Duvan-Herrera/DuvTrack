@@ -320,6 +320,10 @@ footer small {
   margin-top: 20px;
 }
 
+.features-grid-2x2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .feature-card {
   background-color: #0e0b14;
   border: 1px solid rgba(120, 3, 237, 0.2);
