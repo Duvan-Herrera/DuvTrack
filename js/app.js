@@ -300,17 +300,23 @@ function mostrarEnvios() {
         .catch(function (error) {
             console.log('No se pudo cargar el JSON:', error);
             dibujarEnvios(obtenerEnvios());
-        })
+        });
 
-    function dibujarEnvios(todosLosEnvios) {
-        const enviosGrid = document.getElementById('enviosGrid');
-        const contadorActivos = document.getElementById('contadorActivos');
-        const contadorArchivados = document.getElementById('contadorArchivados');
-        const contadorResultados = document.getElementById('contadorResultados');
-    }
+}
 
+
+// ===========================
+//   ENVÍOS - dibujar tarjetas
+// ===========================
+function dibujarEnvios(todosLosEnvios) {
+    const enviosGrid = document.getElementById('enviosGrid');
+    const contadorActivos = document.getElementById('contadorActivos');
+    const contadorArchivados = document.getElementById('contadorArchivados');
+    const contadorResultados = document.getElementById('contadorResultados');
+ 
+    const activos = [];
     const archivados = [];
-
+ 
     for (const envio of todosLosEnvios) {
         if (envio.estado === 'entregado') {
             archivados.push(envio);
@@ -318,109 +324,116 @@ function mostrarEnvios() {
             activos.push(envio);
         }
     }
-
+ 
     contadorActivos.textContent = activos.length;
     contadorArchivados.textContent = archivados.length;
-
+ 
     let lista = activos;
     if (pestanaActual === 'archivados') {
         lista = archivados;
     }
-
+ 
     const texto = document.getElementById('busqueda').value.toLowerCase();
     const estadoFiltro = document.getElementById('filtroEstado').value;
     const categoriaFiltro = document.getElementById('filtroCategoria').value;
-
+ 
     const filtrados = [];
-
+ 
     for (const envio of lista) {
         const coincideTexto =
             envio.numeroGuia.toLowerCase().includes(texto) ||
             envio.destinatario.toLowerCase().includes(texto);
-
+ 
         const coincideEstado = estadoFiltro === '' || envio.estado === estadoFiltro;
         const coincideCategoria = categoriaFiltro === '' || envio.categoria === categoriaFiltro;
-
+ 
         if (coincideTexto && coincideEstado && coincideCategoria) {
             filtrados.push(envio);
         }
     }
-
-    contadorResultados.textContent = 'Mostrando ' + filtrados.length + ' envios ' + pestanaActual;
-
+ 
+    contadorResultados.textContent = 'Mostrando ' + filtrados.length + ' envíos ' + pestanaActual;
+ 
     const cardNuevo = document.querySelector('.card-nuevo');
     enviosGrid.innerHTML = '';
-
+ 
     for (const envio of filtrados) {
         const tarjeta = document.createElement('article');
         tarjeta.classList.add('envio-card');
         tarjeta.classList.add(envio.estado.replace(' ', '-'));
-
+ 
         let notaHTML = '';
         if (envio.nota !== '') {
             notaHTML =
                 '<div class="nota">' +
-                '<span class="material-symbols-outlined">sticky_note_2</span> ' +
-                envio.nota +
+                    '<span class="material-symbols-outlined">sticky_note_2</span> ' +
+                    envio.nota +
                 '</div>';
         }
-
+ 
         let botonesHTML = '';
         if (envio.estado !== 'entregado') {
             botonesHTML =
                 '<div class="botones">' +
-                '<button class="btn-recibido" data-id="' + envio.id + '">' +
-                '<span class="material-symbols-outlined">check</span> Marcar recibido' +
-                '</button>' +
-                '<button class="btn-archivar" data-id="' + envio.id + '">' +
-                '<span class="material-symbols-outlined">archive</span> Archivar' +
-                '</button>' +
+                    '<button class="btn-recibido" data-id="' + envio.id + '">' +
+                        '<span class="material-symbols-outlined">check</span> Marcar recibido' +
+                    '</button>' +
+                    '<button class="btn-archivar" data-id="' + envio.id + '">' +
+                        '<span class="material-symbols-outlined">archive</span> Archivar' +
+                    '</button>' +
                 '</div>';
         }
-
+ 
         tarjeta.innerHTML =
             '<div class="top-row">' +
-            '<span class="numero-guia">#' + envio.numeroGuia + '</span>' +
+                '<span class="numero-guia">#' + envio.numeroGuia + '</span>' +
             '</div>' +
             '<p class="destinatario">' +
-            '<span class="material-symbols-outlined">person</span> ' + envio.destinatario +
+                '<span class="material-symbols-outlined">person</span> ' + envio.destinatario +
             '</p>' +
             '<div class="badges">' +
-            '<span class="badge ' + envio.estado.replace(' ', '-') + '">' + envio.estado + '</span>' +
-            '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
+                '<span class="badge ' + envio.estado.replace(' ', '-') + '">' + envio.estado + '</span>' +
+                '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
             '</div>' +
             '<p class="info-row">' +
-            '<span class="material-symbols-outlined">location_on</span> ' +
-            (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km' +
+                '<span class="material-symbols-outlined">location_on</span> ' +
+                (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km' +
             '</p>' +
             '<p class="info-row">' +
-            '<span class="material-symbols-outlined">payments</span> Costo: ₡' + envio.costo +
+                '<span class="material-symbols-outlined">calendar_today</span> Est. ' + envio.fechaEstimada +
+            '</p>' +
+            '<p class="info-row">' +
+                '<span class="material-symbols-outlined">payments</span> Costo: ₡' + envio.costo +
+            '</p>' +
+            '<p class="info-row">' +
+                '<span class="material-symbols-outlined">history</span> ' + envio.ultimoEvento +
             '</p>' +
             notaHTML +
             botonesHTML;
-
+ 
         enviosGrid.appendChild(tarjeta);
     }
-
+ 
     enviosGrid.appendChild(cardNuevo);
-
-    //Se agrega eventos a los botones Marcar recibido 
+ 
     const botonesRecibido = document.querySelectorAll('.btn-recibido');
     for (const boton of botonesRecibido) {
-        boton.addEventListener('click', function () {
+        boton.addEventListener('click', function() {
             cambiarEstado(boton.dataset.id, 'entregado');
         });
     }
-
-    // Se agrega eventos a los botones Archivas 
+ 
     const botonesArchivar = document.querySelectorAll('.btn-archivar');
     for (const boton of botonesArchivar) {
-        boton.addEventListener('click', function () {
+        boton.addEventListener('click', function() {
             archivarEnvio(boton.dataset.id);
         });
     }
 }
 
+// ===========================
+//   ENVÍOS - cambiar estado
+// ===========================
 
 function cambiarEstado(id, nuevoEstado) {
     const envios = obtenerEnvios();
@@ -445,6 +458,7 @@ function archivarEnvio(id) {
             envio.ultimoEvento = 'Archivado manualmente';
         }
     }
+
     guardarEnvios(envios);
     mostrarEnvios();
 }
