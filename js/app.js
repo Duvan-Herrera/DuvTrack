@@ -1,4 +1,5 @@
 
+
 // ===========================
 //   Funciones compartidas
 // ===========================
@@ -109,25 +110,6 @@ function cargarFeatures() {
 
 if (document.getElementById('featuresGrid')) {
     cargarFeatures();
-}
-
-// ===========================
-//   INDEX - cambio de tema
-// ===========================
-
-const btnTema = document.getElementById('btnTema');
-if(btnTema){
-    btnTema.addEventListener('click', function(){
-        document.body.classList.toggle('tema-claro');
-
-        const icono = btnTema.querySelector('.material-symbols-outlined');
-
-        if (document.body.classList.contains('tema-claro')){
-            icono.textContent = 'dark_mode';
-        }else {
-            icono.textContent = 'ligh_mode';
-        }
-    });
 }
 
 // ===========================
