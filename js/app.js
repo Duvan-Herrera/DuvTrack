@@ -307,6 +307,23 @@ function mostrarEnviosRegistrados() {
         listaEnvios.appendChild(tarjeta);
     }
 
+    /* Guardar nota cuando el usuario escribe */
+    const inputsNota = document.querySelectorAll('.input-nota');
+    for (const input of inputsNota) {
+        input.addEventListener('input', function() {
+            const id = input.dataset.id;
+            const envios = obtenerEnvios();
+
+            for (const envio of envios) {
+                if (envio.id === id) {
+                    envio.nota = input.value;
+                }
+            }
+
+            guardarEnvios(envios);
+        });
+    }
+
     const botonesEliminar = document.querySelectorAll('.btn-eliminar');
     for (const boton of botonesEliminar) {
         boton.addEventListener('click', function () {
