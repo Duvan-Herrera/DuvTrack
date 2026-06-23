@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "icono": "search",
+        "titulo": "Búsqueda instantánea",
+        "descripcion": "Encontrá cualquier envío por número de guía o destinatario en milisegundos."
+    },
+    {
+        "id": 2,
+        "icono": "filter_alt",
+        "titulo": "Filtros combinados",
+        "descripcion": "Filtrá por estado y categoría al mismo tiempo. Los resultados se actualizan al instante."
+    },
+    {
+        "id": 3,
+        "icono": "archive",
+        "titulo": "Archivá entregados",
+        "descripcion": "Ocultá los paquetes ya recibidos para mantener limpio tu panel."
+    },
+    {
+        "id": 4,
+        "icono": "calculate",
+        "titulo": "Costo por km",
+        "descripcion": "₡600 por kilómetro según categoría del envío."
+    },
+    {
+        "id": 5,
+        "icono": "note_alt",
+        "titulo": "Notas personales",
+        "descripcion": "Agregá recordatorios a cada paquete. Se guardan automáticamente."
+    },
+    {
+        "id": 6,
+        "icono": "storage",
+        "titulo": "Persistencia local",
+        "descripcion": "Sin registro, sin servidor, sin perder datos."
+    }
+]

@@ -32,7 +32,7 @@ body {
   color: #e8e0f5;
 }
 
-#sobre-plataforma{
+#sobre-plataforma {
   scroll-margin-top: 80px;
 }
 
@@ -292,9 +292,17 @@ footer small {
   gap: 8px;
 }
 
-.stat-card.verde { border-color: #2d7a45; }
-.stat-card.azul { border-color: #1a6fa8; }
-.stat-card.rojo {border-color: #a32d2d; }
+.stat-card.verde {
+  border-color: #2d7a45;
+}
+
+.stat-card.azul {
+  border-color: #1a6fa8;
+}
+
+.stat-card.rojo {
+  border-color: #a32d2d;
+}
 
 .stat-numero {
   font-size: 40px;
@@ -302,9 +310,17 @@ footer small {
   color: #e8e0f5;
 }
 
-.stat-card.verde .stat-numero { color: #4CAF50; }
-.stat-card.azul .stat-numero { color: #2196F3; }
-.stat-card.rojo .stat-numero { color: #f44336; }
+.stat-card.verde .stat-numero {
+  color: #4CAF50;
+}
+
+.stat-card.azul .stat-numero {
+  color: #2196F3;
+}
+
+.stat-card.rojo .stat-numero {
+  color: #f44336;
+}
 
 .stats-label {
   font-size: 13px;
@@ -430,9 +446,17 @@ footer small {
   padding: 16px;
 }
 
-.envio-card.retrasado { border-left-color: #f44336;}
-.envio-card.pendiente { border-left-color: #ffc107;}
-.envio-card.entregado { border-left-color: #4CAF50;}
+.envio-card.retrasado {
+  border-left-color: #f44336;
+}
+
+.envio-card.pendiente {
+  border-left-color: #ffc107;
+}
+
+.envio-card.entregado {
+  border-left-color: #4CAF50;
+}
 
 .envio-card .top-row {
   display: flex;
@@ -465,15 +489,45 @@ footer small {
   font-weight: 600;
 }
 
-.badge.en-tránsito  { background-color: rgba(33,150,243,0.2); color: #2196F3; }
-.badge.retrasado    { background-color: rgba(244,67,54,0.2); color: #f44336; }
-.badge.pendiente    { background-color: rgba(255,193,7,0.2); color: #ffc107; }
-.badge.entregado    { background-color: rgba(76,175,80,0.2); color: #4CAF50; }
+.badge.en-tránsito {
+  background-color: rgba(33, 150, 243, 0.2);
+  color: #2196F3;
+}
 
-.badge.Express       { background-color: rgba(120,3,237,0.2); color: #b388eb; }
-.badge.Estándar      { background-color: rgba(122,111,144,0.2); color: #a890c8; }
-.badge.Económico     { background-color: rgba(76,175,80,0.2); color:#4CAF50; }
-.badge.Internacional { background-color: rgba(233,30,99,0.2); color:#e91e62; }
+.badge.retrasado {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+}
+
+.badge.pendiente {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.badge.entregado {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.badge.Express {
+  background-color: rgba(120, 3, 237, 0.2);
+  color: #b388eb;
+}
+
+.badge.Estándar {
+  background-color: rgba(122, 111, 144, 0.2);
+  color: #a890c8;
+}
+
+.badge.Económico {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.badge.Internacional {
+  background-color: rgba(233, 30, 99, 0.2);
+  color: #e91e62;
+}
 
 .envio-card .info-row {
   display: flex;
@@ -498,7 +552,7 @@ footer small {
   margin: 10px 0;
 }
 
-.envio-card .botones{
+.envio-card .botones {
   display: flex;
   gap: 8px;
   margin-top: 12px;
@@ -517,7 +571,7 @@ footer small {
 }
 
 .btn-recibido:hover {
-  background-color: rgba(76,175,80,0.1);
+  background-color: rgba(76, 175, 80, 0.1);
 }
 
 .btn-archivar {
@@ -578,7 +632,7 @@ footer small {
 ==================== */
 
 /* Grid de registro */
-.registro-grid{
+.registro-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 20px;
@@ -665,8 +719,8 @@ footer small {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(76,175,80,0.1);
-  border: 1px solid rgba(76,175,80,0.3);
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
   border-radius: 10px;
   padding: 16px;
   margin-top: 20px;
@@ -689,7 +743,7 @@ footer small {
 }
 
 .badge-precio {
-  background-color: rgba(76,175,80,0.2);
+  background-color: rgba(76, 175, 80, 0.2);
   color: #4CAF50;
   font-size: 11px;
   font-weight: 600;
@@ -763,7 +817,7 @@ footer small {
 
 .btn-eliminar {
   background-color: transparent;
-  border: 1px solid rgba(244,67,54,0.4);
+  border: 1px solid rgba(244, 67, 54, 0.4);
   color: #f44336;
   width: 36px;
   height: 36px;
@@ -776,7 +830,7 @@ footer small {
 }
 
 .btn-eliminar:hover {
-  background-color: rgba(244,67,54,0.1);
+  background-color: rgba(244, 67, 54, 0.1);
 }
 
 /* Caja informativa */
@@ -800,4 +854,116 @@ footer small {
   color: #a890c8;
   font-size: 12px;
   line-height: 1.6;
+}
+
+/* ===================
+RESPONSIVE - Celular 
+=================== */
+
+@media (max-width: 480px){
+  .dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 0;
+    border-top: 1px solid rgba(120, 3, 237, 0.7);
+    border-right: none;
+    padding: 10px 8px;
+    z-index: 200;
+  }
+
+  .dock-item{
+    width: 44px;
+    height: 44px;
+  }
+
+  .dock-item .tooltip {
+    display: none;
+  }
+  
+  .topbar {
+    left: 0;
+    padding: 0 16px;
+  }
+
+  main {
+    margin-left: 0;
+    padding: 70px 16px 80px 16px;
+  }
+
+  footer {
+    margin-left: 0;
+    padding: 24px 16px 90px 16px;
+  }
+
+  .card video {
+    display: none;
+  }
+
+  .card-hero .card-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero-botones {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .btn-principal,
+  .btn-secundario {
+    flex: 1;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .envios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .filtros input,
+  .filtros select {
+    width: 100%;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .registro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campos-fila {
+    grid-template-columns: 1fr;
+  }
+
+  .envio-card .botones {
+    flex-direction: column;
+  }
+
+  .btn-recibido,
+  .btn-archivar {
+    width: 100%;
+  }
 }
