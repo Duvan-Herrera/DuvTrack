@@ -237,12 +237,34 @@ if (formRegistro) {
         envios.push(nuevoEnvio);
         guardarEnvios(envios);
 
-        /* Se limpia el formulario */
+        /* se limpia el formulario */
         formRegistro.reset();
         calcularPrecio();
         mostrarEnviosRegistrados();
+
+        const confirmacion = document.getElementById('mensajeConfirmacion');
+        confirmacion.textContent = ' Envío registrado correctamente';
+        confirmacion.classList.add('visible');
+
+        //se oculta despues de 3seg
+        setTimeout(function () {
+            confirmacion.classList.remove('visible');
+        }, 3000);
     });
+
+    const btnLimpiar = document.getElementById('btnLimpiar');
+
+    if (btnLimpiar) {
+        btnLimpiar.addEventListener('click', function () {
+            const confirmar = confirm('¿Seguro que quieres limpiar el formulario?');
+            if (confirmar) {
+                formRegistro.reset();
+                calcularPrecio();
+            }
+        });
+    }
 }
+
 
 // ===========================
 //  REGISTRO - mostrar lista
@@ -449,6 +471,13 @@ function dibujarEnvios(todosLosEnvios) {
             botonesHTML;
 
         enviosGrid.appendChild(tarjeta);
+    }
+
+    if (filtrados.length === 0) {
+        const vacio = document.createElement('p');
+        vacio.classList.add('vacio');
+        vacio.textContent = 'No se encontraron envíos con esos criterios.';
+        enviosGrid.appendChild(vacio);
     }
 
     enviosGrid.appendChild(cardNuevo);

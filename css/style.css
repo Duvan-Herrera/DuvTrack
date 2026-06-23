@@ -631,7 +631,6 @@ footer small {
   PAGINA REGISTRO
 ==================== */
 
-/* Grid de registro */
 .registro-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -663,6 +662,22 @@ footer small {
   color: #a890c8;
   font-size: 12px;
   margin-top: 2px;
+}
+
+.confirmacion {
+  display: none;
+  color: #4CAF50;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.confirmacion.visible {
+  display: block;
 }
 
 /* Formulario */

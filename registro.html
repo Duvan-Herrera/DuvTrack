@@ -42,7 +42,7 @@
 
     <!-- Header con logo y boton -->
     <header class="topbar">
-        <img src="assets/images/logoDuvTrack.png" alt="DuvTrack" height="32">
+        <img src="assets/images/logoDuvTrack.png" alt=" Logo DuvTrack" height="32">
         <p><strong>DuvTrack</strong></p>
     </header>
 
@@ -112,10 +112,18 @@
                         <input type="date" id="fechaEstimada">
                         <p class="error" id="errorFecha"></p>
 
-                        <button type="submit" class="btn-principal btn-full">
-                            <span class="material-symbols-outlined">add</span>
-                            Agregar envío
-                        </button>
+                        <p class="confirmacion" id="mensajeConfirmacion"></p>
+
+                        <div class="hero-botones">
+                            <button type="submit" class="btn-principal btn-full">
+                                <span class="material-symbols-outlined">add</span>
+                                Agregar envío
+                            </button>
+                            <button type="button" id="btnLimpiar" class="btn-secundario btn-full">
+                                <span class="material-symbols-outlined">refresh</span>
+                                Limpiar
+                            </button>
+                        </div>
 
                     </form>
                 </div>
