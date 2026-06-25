@@ -449,11 +449,11 @@ footer small {
   border-left-color: #f44336;
 }
 
-.envio-card.pendiente {
+.envio-card.Pendiente {
   border-left-color: #ffc107;
 }
 
-.envio-card.entregado {
+.envio-card.Entregado {
   border-left-color: #4CAF50;
 }
 
@@ -488,22 +488,22 @@ footer small {
   font-weight: 600;
 }
 
-.badge.en-tránsito {
+.badge.En-tránsito {
   background-color: rgba(33, 150, 243, 0.2);
   color: #2196F3;
 }
 
-.badge.retrasado {
+.badge.Retrasado {
   background-color: rgba(244, 67, 54, 0.2);
   color: #f44336;
 }
 
-.badge.pendiente {
+.badge.Pendiente {
   background-color: rgba(255, 193, 7, 0.2);
   color: #ffc107;
 }
 
-.badge.entregado {
+.badge.Entregado {
   background-color: rgba(76, 175, 80, 0.2);
   color: #4CAF50;
 }

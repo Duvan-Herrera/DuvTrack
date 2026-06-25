@@ -9,7 +9,7 @@
         "categoria": "Express",
         "multiplicador": 1.3,
         "costo": 21840,
-        "estado": "en tránsito",
+        "estado": "En tránsito",
         "fechaEstimada": "2026-06-28",
         "ultimoEvento": "En centro de distribución",
         "nota": "Regalo para mamá — llamar antes de entregar"
@@ -24,7 +24,7 @@
         "categoria": "Internacional",
         "multiplicador": 1.5,
         "costo": 279000,
-        "estado": "retrasado",
+        "estado": "Retrasado",
         "fechaEstimada": "2026-06-01",
         "ultimoEvento": "Detenido en aduana",
         "nota": ""
@@ -39,7 +39,7 @@
         "categoria": "Estándar",
         "multiplicador": 1.0,
         "costo": 57000,
-        "estado": "pendiente",
+        "estado": "Pendiente",
         "fechaEstimada": "2026-07-05",
         "ultimoEvento": "Esperando recolección",
         "nota": ""
@@ -54,7 +54,7 @@
         "categoria": "Express",
         "multiplicador": 1.3,
         "costo": 124800,
-        "estado": "en tránsito",
+        "estado": "En tránsito",
         "fechaEstimada": "2026-06-23",
         "ultimoEvento": "En camino",
         "nota": ""
@@ -69,7 +69,7 @@
         "categoria": "Estándar",
         "multiplicador": 1.0,
         "costo": 120000,
-        "estado": "entregado",
+        "estado": "Entregado",
         "fechaEstimada": "2026-05-20",
         "ultimoEvento": "Entregado al destinatario",
         "nota": ""
@@ -84,7 +84,7 @@
         "categoria": "Económico",
         "multiplicador": 0.7,
         "costo": 18900,
-        "estado": "entregado",
+        "estado": "Entregado",
         "fechaEstimada": "2026-05-22",
         "ultimoEvento": "Entregado al destinatario",
         "nota": ""
@@ -99,7 +99,7 @@
         "categoria": "Estándar",
         "multiplicador": 1.0,
         "costo": 72000,
-        "estado": "en tránsito",
+        "estado": "En tránsito",
         "fechaEstimada": "2026-06-24",
         "ultimoEvento": "En centro de distribución",
         "nota": ""
@@ -114,7 +114,7 @@
         "categoria": "Express",
         "multiplicador": 1.3,
         "costo": 140400,
-        "estado": "entregado",
+        "estado": "Entregado",
         "fechaEstimada": "2026-05-25",
         "ultimoEvento": "Entregado al destinatario",
         "nota": ""
@@ -129,7 +129,7 @@
         "categoria": "Económico",
         "multiplicador": 0.7,
         "costo": 9240,
-        "estado": "pendiente",
+        "estado": "Pendiente",
         "fechaEstimada": "2026-07-06",
         "ultimoEvento": "Esperando recolección",
         "nota": ""
@@ -144,9 +144,9 @@
         "categoria": "Estándar",
         "multiplicador": 1.0,
         "costo": 9000,
-        "estado": "retrasado",
+        "estado": "Retrasado",
         "fechaEstimada": "2026-05-30",
-        "ultimoEvento": "Paquete dañado en tránsito",
+        "ultimoEvento": "Paquete dañado En tránsito",
         "nota": "Contactar para reposición"
     }
 ]
