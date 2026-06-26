@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark/dark.min.css">
     <title>DuvTrack | Entregas Rápidas y Rastreo en Tiempo Real</title>
 </head>
-
 
 <body>
     <nav class="dock">
@@ -41,12 +41,13 @@
         </a>
     </nav>
 
-    <!-- Header con logo y boton -->
+    <!-- Header con logo -->
     <header class="topbar">
         <img src="assets/images/logoDuvTrack.png" alt="Logo DuvTrack" height="32">
         <p><strong>DuvTrack</strong></p>
     </header>
 
+    <!-- Contenido principal de la pagina -->
     <main>
         <section class="tabs">
             <button id="btnActivos" class="tab active">
@@ -112,6 +113,7 @@
             <small>&copy; 2026 DuvTrack. Todos los derechos reservados.</small>
         </p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/envios.js"></script>
 </body>

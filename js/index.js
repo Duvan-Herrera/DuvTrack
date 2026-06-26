@@ -30,7 +30,7 @@ if (document.getElementById('total-envios')) {
     cargarEstadisticas();
 }
 
-//cargar features desde JSON
+//Carga los features desde JSON
 function cargarFeatures() {
     const grid = document.getElementById('featuresGrid');
 

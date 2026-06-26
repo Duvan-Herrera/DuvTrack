@@ -1,6 +1,6 @@
 let pestanaActual = 'activos';
 
-// ── Mostrar envíos ──
+// Mouestra los envios
 function mostrarEnvios() {
     const enviosGrid = document.getElementById('enviosGrid');
 
@@ -9,21 +9,21 @@ function mostrarEnvios() {
     }
 
     fetch('data/envios.json')
-        .then(function(respuesta) {
+        .then(function (respuesta) {
             return respuesta.json();
         })
-        .then(function(enviosJSON) {
+        .then(function (enviosJSON) {
             const enviosLocalStorage = obtenerEnvios();
             const todosLosEnvios = enviosJSON.concat(enviosLocalStorage);
             dibujarEnvios(todosLosEnvios);
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log('No se pudo cargar el JSON:', error);
             dibujarEnvios(obtenerEnvios());
         });
 }
 
-// ── Dibujar tarjetas ──
+// Dibuja las tarjetas de envios
 function dibujarEnvios(todosLosEnvios) {
     const enviosGrid = document.getElementById('enviosGrid');
     const contadorActivos = document.getElementById('contadorActivos');
@@ -78,10 +78,10 @@ function dibujarEnvios(todosLosEnvios) {
         tarjeta.classList.add('envio-card');
         tarjeta.classList.add(envio.estado.replace(' ', '-'));
 
-        let notaHTML = '';
         const enviosLocales = obtenerEnvios();
-        const esLocal = enviosLocales.some(function(e) { return e.id === envio.id; });
+        const esLocal = enviosLocales.some(function (e) { return e.id === envio.id; });
 
+        let notaHTML = '';
         if (esLocal) {
             notaHTML =
                 '<div class="nota-editable" style="margin-top:8px">' +
@@ -97,7 +97,7 @@ function dibujarEnvios(todosLosEnvios) {
         }
 
         let botonesHTML = '';
-        if (envio.estado !== 'Entregado') {
+        if (envio.estado !== 'Entregado' && esLocal) {
             botonesHTML =
                 '<div class="botones">' +
                 '<button class="btn-recibido" data-id="' + envio.id + '">' +
@@ -150,7 +150,7 @@ function dibujarEnvios(todosLosEnvios) {
 
     const inputsNota = document.querySelectorAll('.input-nota');
     for (const input of inputsNota) {
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             const id = input.dataset.id;
             const envios = obtenerEnvios();
 
@@ -166,20 +166,20 @@ function dibujarEnvios(todosLosEnvios) {
 
     const botonesRecibido = document.querySelectorAll('.btn-recibido');
     for (const boton of botonesRecibido) {
-        boton.addEventListener('click', function() {
+        boton.addEventListener('click', function () {
             cambiarEstado(boton.dataset.id, 'Entregado');
         });
     }
 
     const botonesArchivar = document.querySelectorAll('.btn-archivar');
     for (const boton of botonesArchivar) {
-        boton.addEventListener('click', function() {
+        boton.addEventListener('click', function () {
             archivarEnvio(boton.dataset.id);
         });
     }
 }
 
-// ── Cambiar estado ──
+// Cambia el estado del pedido
 function cambiarEstado(id, nuevoEstado) {
     const envios = obtenerEnvios();
 
@@ -208,21 +208,21 @@ function archivarEnvio(id) {
     mostrarEnvios();
 }
 
-// ── Pestañas y filtros ──
+// Filtros
 const btnActivos = document.getElementById('btnActivos');
 const btnArchivados = document.getElementById('btnArchivados');
 
 if (btnActivos) {
     actualizarEstadosPorFecha();
 
-    btnActivos.addEventListener('click', function() {
+    btnActivos.addEventListener('click', function () {
         pestanaActual = 'activos';
         btnActivos.classList.add('active');
         btnArchivados.classList.remove('active');
         mostrarEnvios();
     });
 
-    btnArchivados.addEventListener('click', function() {
+    btnArchivados.addEventListener('click', function () {
         pestanaActual = 'archivados';
         btnArchivados.classList.add('active');
         btnActivos.classList.remove('active');

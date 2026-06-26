@@ -106,7 +106,6 @@ body {
 /*  Main  */
 main {
   margin-left: 90px;
-  padding-top: 90px;
   padding: 70px 24px 24px 24px;
 }
 
@@ -292,17 +291,9 @@ footer small {
   gap: 8px;
 }
 
-.stat-card.verde {
-  border-color: #2d7a45;
-}
-
-.stat-card.azul {
-  border-color: #1a6fa8;
-}
-
-.stat-card.rojo {
-  border-color: #a32d2d;
-}
+.stat-card.verde { border-color: #2d7a45; }
+.stat-card.azul  { border-color: #1a6fa8; }
+.stat-card.rojo  { border-color: #a32d2d; }
 
 .stat-numero {
   font-size: 40px;
@@ -310,17 +301,9 @@ footer small {
   color: #e8e0f5;
 }
 
-.stat-card.verde .stat-numero {
-  color: #4CAF50;
-}
-
-.stat-card.azul .stat-numero {
-  color: #2196F3;
-}
-
-.stat-card.rojo .stat-numero {
-  color: #f44336;
-}
+.stat-card.verde .stat-numero { color: #4CAF50; }
+.stat-card.azul .stat-numero  { color: #2196F3; }
+.stat-card.rojo .stat-numero  { color: #f44336; }
 
 .stats-label {
   font-size: 13px;
@@ -445,17 +428,10 @@ footer small {
   padding: 16px;
 }
 
-.envio-card.retrasado {
-  border-left-color: #f44336;
-}
-
-.envio-card.Pendiente {
-  border-left-color: #ffc107;
-}
-
-.envio-card.Entregado {
-  border-left-color: #4CAF50;
-}
+.envio-card.En-tránsito { border-left-color: #2196F3; }
+.envio-card.Retrasado   { border-left-color: #f44336; }
+.envio-card.Pendiente   { border-left-color: #ffc107; }
+.envio-card.Entregado   { border-left-color: #4CAF50; }
 
 .envio-card .top-row {
   display: flex;
@@ -488,45 +464,16 @@ footer small {
   font-weight: 600;
 }
 
-.badge.En-tránsito {
-  background-color: rgba(33, 150, 243, 0.2);
-  color: #2196F3;
-}
+.badge.En-tránsito { background-color: rgba(33, 150, 243, 0.2); color: #2196F3; }
+.badge.Retrasado   { background-color: rgba(244, 67, 54, 0.2); color: #f44336; }
+.badge.Pendiente   { background-color: rgba(255, 193, 7, 0.2); color: #ffc107; }
+.badge.Entregado   { background-color: rgba(76, 175, 80, 0.2); color: #4CAF50; }
 
-.badge.Retrasado {
-  background-color: rgba(244, 67, 54, 0.2);
-  color: #f44336;
-}
 
-.badge.Pendiente {
-  background-color: rgba(255, 193, 7, 0.2);
-  color: #ffc107;
-}
-
-.badge.Entregado {
-  background-color: rgba(76, 175, 80, 0.2);
-  color: #4CAF50;
-}
-
-.badge.Express {
-  background-color: rgba(120, 3, 237, 0.2);
-  color: #b388eb;
-}
-
-.badge.Estándar {
-  background-color: rgba(122, 111, 144, 0.2);
-  color: #a890c8;
-}
-
-.badge.Económico {
-  background-color: rgba(76, 175, 80, 0.2);
-  color: #4CAF50;
-}
-
-.badge.Internacional {
-  background-color: rgba(233, 30, 99, 0.2);
-  color: #e91e62;
-}
+.badge.Express       { background-color: rgba(120, 3, 237, 0.2); color: #b388eb; }
+.badge.Estándar      { background-color: rgba(122, 111, 144, 0.2); color: #a890c8; }
+.badge.Económico     { background-color: rgba(76, 175, 80, 0.2); color: #4CAF50; }
+.badge.Internacional { background-color: rgba(233, 30, 99, 0.2); color: #e91e62; }
 
 .envio-card .info-row {
   display: flex;
@@ -893,7 +840,7 @@ footer small {
 RESPONSIVE - Celular 
 =================== */
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
   .dock {
     position: fixed;
     left: 0;
@@ -910,7 +857,7 @@ RESPONSIVE - Celular
     z-index: 200;
   }
 
-  .dock-item{
+  .dock-item {
     width: 44px;
     height: 44px;
   }
@@ -918,7 +865,7 @@ RESPONSIVE - Celular
   .dock-item .tooltip {
     display: none;
   }
-  
+
   .topbar {
     left: 0;
     padding: 0 16px;

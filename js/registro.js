@@ -1,4 +1,4 @@
-// ── Cálculo de precio ──
+// Calculo de precios
 const inputKilometros = document.getElementById('kilometros');
 const selectCategoria = document.getElementById('categoria');
 const precioMonto = document.getElementById('precioMonto');
@@ -21,11 +21,11 @@ if (inputKilometros) {
     calcularPrecio();
 }
 
-// ── Guardar envío ──
+// Se guarda el envio
 const formRegistro = document.getElementById('formRegistro');
 
 if (formRegistro) {
-    formRegistro.addEventListener('submit', function(event) {
+    formRegistro.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const numeroGuia = document.getElementById('numeroGuia').value.trim();
@@ -40,6 +40,7 @@ if (formRegistro) {
 
         let valido = true;
 
+        //validaciones
         if (numeroGuia === '') {
             document.getElementById('errorGuia').textContent = 'Este campo es requerido';
             document.getElementById('errorGuia').classList.add('visible');
@@ -118,30 +119,41 @@ if (formRegistro) {
         calcularPrecio();
         mostrarEnviosRegistrados();
 
-        const confirmacion = document.getElementById('mensajeConfirmacion');
-        confirmacion.textContent = '✓ Envío registrado correctamente';
-        confirmacion.classList.add('visible');
-
-        setTimeout(function() {
-            confirmacion.classList.remove('visible');
-        }, 3000);
+        Swal.fire({
+            title: '¡Envío registrado!',
+            text: 'El envío fue guardado correctamente.',
+            icon: 'success',
+            confirmButtonColor: '#7803ED',
+            timer: 2500,
+            showConfirmButton: true
+        });
     });
 }
 
-// ── Botón limpiar ──
+//Boton de limpiar
 const btnLimpiar = document.getElementById('btnLimpiar');
 
 if (btnLimpiar) {
-    btnLimpiar.addEventListener('click', function() {
-        const confirmar = confirm('¿Seguro que querés limpiar el formulario?');
-        if (confirmar) {
-            formRegistro.reset();
-            calcularPrecio();
-        }
+    btnLimpiar.addEventListener('click', function () {
+        Swal.fire({
+            title: '¿Limpiar formulario?',
+            text: 'Se borrarán todos los campos.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, limpiar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#7803ED',
+            cancelButtonColor: '#444'
+        }).then(function (resultado) {
+            if (resultado.isConfirmed) {
+                formRegistro.reset();
+                calcularPrecio();
+            }
+        });
     });
 }
 
-// ── Mostrar lista de envíos registrados ──
+// Muestra la lista de envios registrados
 function mostrarEnviosRegistrados() {
     const listaEnvios = document.getElementById('listaEnvios');
 
@@ -163,21 +175,21 @@ function mostrarEnviosRegistrados() {
 
         tarjeta.innerHTML =
             '<div style="flex:1">' +
-                '<p class="numero-guia">#' + envio.numeroGuia + '</p>' +
-                '<p class="detalle">' + envio.destinatario + '</p>' +
-                '<p class="detalle">' + (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km</p>' +
-                '<p class="detalle">📅 Fecha Est. ' + envio.fechaEstimada + '</p>' +
-                '<div class="badges">' +
-                    '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
-                    '<span class="badge entregado">₡' + envio.costo + '</span>' +
-                '</div>' +
-                '<div class="nota-editable">' +
-                    '<input type="text" class="input-nota" data-id="' + envio.id + '" ' +
-                    'placeholder="Agregar nota..." value="' + (envio.nota || '') + '">' +
-                '</div>' +
+            '<p class="numero-guia">#' + envio.numeroGuia + '</p>' +
+            '<p class="detalle">' + envio.destinatario + '</p>' +
+            '<p class="detalle">' + (envio.origen || '?') + ' → ' + envio.destino + ' · ' + envio.kilometros + ' km</p>' +
+            '<p class="detalle">📅 Fecha Est. ' + envio.fechaEstimada + '</p>' +
+            '<div class="badges">' +
+            '<span class="badge ' + envio.categoria + '">' + envio.categoria + '</span>' +
+            '<span class="badge entregado">₡' + envio.costo + '</span>' +
+            '</div>' +
+            '<div class="nota-editable">' +
+            '<input type="text" class="input-nota" data-id="' + envio.id + '" ' +
+            'placeholder="Agregar nota..." value="' + (envio.nota || '') + '">' +
+            '</div>' +
             '</div>' +
             '<button class="btn-eliminar" data-id="' + envio.id + '">' +
-                '<span class="material-symbols-outlined">delete</span>' +
+            '<span class="material-symbols-outlined">delete</span>' +
             '</button>';
 
         listaEnvios.appendChild(tarjeta);
@@ -185,7 +197,7 @@ function mostrarEnviosRegistrados() {
 
     const inputsNota = document.querySelectorAll('.input-nota');
     for (const input of inputsNota) {
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             const id = input.dataset.id;
             const envios = obtenerEnvios();
 
@@ -201,30 +213,47 @@ function mostrarEnviosRegistrados() {
 
     const botonesEliminar = document.querySelectorAll('.btn-eliminar');
     for (const boton of botonesEliminar) {
-        boton.addEventListener('click', function() {
+        boton.addEventListener('click', function () {
             eliminarEnvio(boton.dataset.id);
         });
     }
 }
 
+// Reemplaza eliminarEnvio completo
 function eliminarEnvio(id) {
-    const confirmar = confirm('¿Seguro que querés eliminar este envío?');
+    Swal.fire({
+        title: '¿Eliminar envío?',
+        text: 'Esta acción no se puede deshacer.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#f44336',
+        cancelButtonColor: '#444'
+    }).then(function (resultado) {
+        if (resultado.isConfirmed) {
+            const envios = obtenerEnvios();
+            const nuevosEnvios = [];
 
-    if (!confirmar) {
-        return;
-    }
+            for (const envio of envios) {
+                if (envio.id !== id) {
+                    nuevosEnvios.push(envio);
+                }
+            }
 
-    const envios = obtenerEnvios();
-    const nuevosEnvios = [];
+            guardarEnvios(nuevosEnvios);
+            mostrarEnviosRegistrados();
 
-    for (const envio of envios) {
-        if (envio.id !== id) {
-            nuevosEnvios.push(envio);
+            Swal.fire({
+                title: 'Eliminado',
+                text: 'El envío fue eliminado correctamente.',
+                icon: 'success',
+                confirmButtonColor: '#7803ED',
+                timer: 2000,
+                showConfirmButton: false
+            });
         }
-    }
-
-    guardarEnvios(nuevosEnvios);
-    mostrarEnviosRegistrados();
+    });
 }
 
 if (document.getElementById('listaEnvios')) {
