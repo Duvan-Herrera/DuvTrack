@@ -49,6 +49,17 @@ if (formRegistro) {
             document.getElementById('errorGuia').classList.remove('visible');
         }
 
+        const envios = obtenerEnvios();
+        const yaExiste = envios.some(function (envio) {
+            return envio.numeroGuia === numeroGuia;
+        });
+
+        if (yaExiste) {
+            document.getElementById('errorGuia').textContent = 'Ese número de guía ya existe';
+            document.getElementById('errorGuia').classList.add('visible');
+            valido = false;
+        }
+
         if (destinatario === '') {
             document.getElementById('errorDestinatario').textContent = 'Este campo es requerido';
             document.getElementById('errorDestinatario').classList.add('visible');
@@ -111,7 +122,6 @@ if (formRegistro) {
             ultimoEvento: 'Registrado por el usuario'
         };
 
-        const envios = obtenerEnvios();
         envios.push(nuevoEnvio);
         guardarEnvios(envios);
 
